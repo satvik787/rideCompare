@@ -1,0 +1,14 @@
+
+export default class MapplsPlace {
+    placeName: string;
+    eLoc: string;
+    source: boolean;    
+
+    constructor(placeName: string, eLoc: string, source: boolean) {
+        this.placeName = placeName;
+        this.eLoc = eLoc;
+        this.source = source;
+    }
+
+
+}

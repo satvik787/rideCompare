@@ -1,0 +1,24 @@
+<div class="w-full h-full">
+    <div class="h-3/5">
+        <app-map></app-map>
+    </div>
+    <div class="flex flex-col gap-4 bg-sky-900 h-2/5">
+        <div class="flex flex-col rounded-md bg-white mx-4 my-2 shadow-xl">
+            <div class="flex w-full">
+                <div class="p-2">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+                <app-mapple-search placeholder="Pickup Location" [source]="true"></app-mapple-search>
+            </div>
+            <div class="w-full h-px bg-gray-300"></div>
+            <div class="flex grow">
+                <div class="p-2">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <app-mapple-search placeholder="Dropoff Location"></app-mapple-search>
+            </div>
+        </div>
+
+    </div>
+
+</div>
