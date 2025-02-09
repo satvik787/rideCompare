@@ -1,3 +1,11 @@
-<div class="w-full md:w-2/5 h-dvh">
-  <router-outlet></router-outlet>
-</div>
+<mat-drawer-container>
+  <mat-drawer mode="side" opened="false" #drawer mode="over" class="bg-sky-900" id="drawer">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <div class="w-full md:w-2/5 h-dvh">
+    <button (click)="drawer.toggle()" class="z-10 bg-white shadow inline absolute p-2 cursor-pointer top-3 left-3 rounded-full w-10 h-10" >
+      <i class="fas fa-bars"></i>
+    </button>
+    <router-outlet></router-outlet>
+  </div>  
+</mat-drawer-container>

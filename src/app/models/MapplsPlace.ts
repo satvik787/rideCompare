@@ -12,3 +12,8 @@ export default class MapplsPlace {
 
 
 }
+
+export interface MapplsDistanceAndEta {
+    distance: number;
+    eta: number;
+}

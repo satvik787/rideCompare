@@ -1,4 +1,4 @@
-import { Component, Input,AfterViewInit ,ViewChild, ElementRef, HostBinding} from '@angular/core';
+import { Component, Input,AfterViewInit ,ViewChild, ElementRef, HostBinding, HostListener, ChangeDetectionStrategy} from '@angular/core';
 import { LocationPickerService } from '../service/LocationPickerService';
 import MapplsPlace from '../models/MapplsPlace';
 declare var mappls: any;
@@ -9,17 +9,29 @@ declare var mappls: any;
   imports: [],
   templateUrl: './mapple-search.component.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class MappleSearchComponent implements AfterViewInit {
   @HostBinding('style.flexGrow') flexGrow: string = '1';
+  
+
   @Input() placeholder: string = '';
   @Input() source: boolean = false;
   @ViewChild('search') search!: ElementRef;
 
   public id: string;
+
   constructor(private locationPickerService: LocationPickerService) {
     locationPickerService.incrementCnt();
     this.id = 'mappls-search-' + locationPickerService.getCnt(); 
+  }
+
+  @HostListener('click', ['$event']) 
+  onPlaceClick(event: MouseEvent) {
+    if (event.target instanceof HTMLLIElement) {
+      this.locationPickerService.setLoading(true);
+    }
   }
 
   callback(location: MapplsPlace[]) {    
@@ -29,6 +41,7 @@ export class MappleSearchComponent implements AfterViewInit {
     this.locationPickerService.setLocation(location[0]);
   }
 
+  
 
 
   ngAfterViewInit(): void {    
@@ -38,7 +51,6 @@ export class MappleSearchComponent implements AfterViewInit {
       geolocation: this.source,
     }
     const search = new mappls.search(this.search.nativeElement, options, this.callback.bind(this));
-
   }
 
 

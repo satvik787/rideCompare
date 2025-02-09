@@ -1,14 +1,19 @@
 <div class="w-full h-full">
     <div class="h-3/5">
-        <app-map></app-map>
+        <app-map (distance)="handleCalculateFare($event)"></app-map>
     </div>
     <div class="flex flex-col gap-4 bg-sky-900 h-2/5">
-        <div class="flex flex-col rounded-md bg-white mx-4 my-2 shadow-xl">
+        <div class="flex flex-col rounded-md bg-white mx-4 my-2 shadow-xl" [ngClass]="{'opacity-90':loader}">
             <div class="flex w-full">
                 <div class="p-2">
                     <i class="fa-solid fa-location-crosshairs"></i>
                 </div>
                 <app-mapple-search placeholder="Pickup Location" [source]="true"></app-mapple-search>
+            </div>
+            <div *ngIf="loader" class="flex justify-center items-center">
+                <div class="absolute z-10">
+                    <mat-spinner [diameter]="30"></mat-spinner>
+                </div>
             </div>
             <div class="w-full h-px bg-gray-300"></div>
             <div class="flex grow">

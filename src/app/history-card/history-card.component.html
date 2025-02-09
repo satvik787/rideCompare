@@ -1,0 +1,16 @@
+<div class="shadow-lg bg-white rounded p-2 flex justify-between cursor-pointer">
+    <div>
+        <div class="flex items-center gap-2">   
+            <span class="text-sm"><i class="fas fa-circle text-green-500 fa-xs"></i></span>
+            <p>{{ fareHistory?.source}} </p>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-sm"><i class="fas fa-circle text-red-500 fa-xs"></i></span>
+            <p>{{ fareHistory?.destination }}</p>
+        </div>
+    </div>
+    <div>
+        <p>Distance: {{fareHistory?.distance}}</p>
+        <p>Date: {{fareHistory?.date}}</p>
+    </div>
+</div>
