@@ -6,21 +6,21 @@
     <div class="border border-[#ccc] my-3"></div>
     <div class="p-2 flex flex-col justify-between h-[87%]">
         <div class="flex flex-col gap-2">
-            <a routerLink="/" routerLinkActive="bg-gray-200 text-black" [routerLinkActiveOptions]="{exact:true}" class="p-2 rounded cursor-pointer flex gap-3 items-center hover:bg-gray-200 hover:text-black">
+            <a routerLink="/" (click)="drawerToggleFunction()" routerLinkActive="bg-gray-200 text-black" [routerLinkActiveOptions]="{exact:true}" class="p-2 rounded cursor-pointer flex gap-3 items-center hover:bg-gray-200 hover:text-black">
                 <i class="fa-solid fa-indian-rupee-sign"></i>
                 Estimation
             </a>
         
-            <a routerLink="history" routerLinkActive="bg-gray-200 text-black" [routerLinkActiveOptions]="{exact:true}" class="flex gap-3 items-center p-2 rounded cursor-pointer hover:bg-gray-200  hover:text-black ">
+            <a routerLink="history" (click)="drawerToggleFunction()"  routerLinkActive="bg-gray-200 text-black" [routerLinkActiveOptions]="{exact:true}" class="flex gap-3 items-center p-2 rounded cursor-pointer hover:bg-gray-200  hover:text-black ">
                 <i class="fa-solid fa-history"></i>
                 History
             </a>
-            <a routerLink="about" routerLinkActive="bg-gray-200 text-black" [routerLinkActiveOptions]="{exact:true}" class="flex gap-3 items-center p-2 rounded cursor-pointer hover:bg-gray-200  hover:text-black ">
+            <a routerLink="about"  (click)="drawerToggleFunction()"  routerLinkActive="bg-gray-200 text-black" [routerLinkActiveOptions]="{exact:true}" class="flex gap-3 items-center p-2 rounded cursor-pointer hover:bg-gray-200  hover:text-black ">
                 <i class="fa-solid fa-circle-info"></i>
                 About
             </a>
         </div>
-        <a routerLink="/logout" routerLinkActive="active" class="flex gap-3 items-center p-2 rounded cursor-pointer hover:bg-gray-200  hover:text-black ">
+        <a routerLink="/logout" (click)="drawerToggleFunction()"  routerLinkActive="active" class="flex gap-3 items-center p-2 rounded cursor-pointer hover:bg-gray-200  hover:text-black ">
             <i class="fa-solid fa-sign-out-alt"></i>
             Logout
         </a>

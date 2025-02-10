@@ -1,0 +1,93 @@
+<div *ngIf="fareDetails !== undefined; else noFareDetails" class="w-full h-full bg-sky-900 p-4  overflow-auto">
+    <div class="h-14"></div>
+    <div class="flex flex-col gap-3">
+        <div class="shadow-lg bg-white rounded p-2 flex justify-between cursor-pointer">
+            <div>
+                <div class="flex items-center gap-2">   
+                    <span class="text-sm"><i class="fas fa-circle text-green-500 fa-xs"></i></span>
+                    <p>{{ fareDetails.source}} </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm"><i class="fas fa-circle text-red-500 fa-xs"></i></span>
+                    <p>{{ fareDetails.destination }}</p>
+                </div>
+            </div>
+            <div>
+                <p>Distance: {{fareDetails.distance}}</p>
+                <p>Date: {{fareDetails.date}}</p>
+            </div>
+        </div>
+        <div class="bg-white shadow-md rounded p-2 w-full justify-between">
+            <p class="text-xl pb-2">Ola</p>
+            <div class="flex flex-col gap-2">
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-motorcycle fa-xl"></i>
+                        <div class="flex flex-col">
+                            <p class="text-lg">Bike</p>
+                            <small>{{fareDetails.olaBike.eta}} Min</small>
+                        </div>
+                    </div>
+                    <p class="text-2xl">₹{{fareDetails.olaBike.cost}}</p>
+                </div>
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-motorcycle fa-xl"></i>
+                        <div class="flex flex-col">
+                            <p class="text-lg">Auto</p>
+                            <small>{{fareDetails.olaBike.eta}} Min</small>
+                        </div>
+                    </div>
+                    <p class="text-2xl">₹{{fareDetails.olaAuto.cost}}</p>
+                </div>
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-taxi fa-xl"></i>
+                        <div class="flex flex-col">
+                            <p class="text-lg">Cab</p>
+                            <small>{{fareDetails.olaBike.eta}} Min</small>
+                        </div>                    
+                    </div>
+                    <p class="text-2xl">₹{{fareDetails.olaCab.cost}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white shadow-md rounded p-2 w-full">
+            <p class="text-xl pb-2">Uber</p>
+            <div class="flex flex-col gap-4">
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-motorcycle fa-xl"></i>
+                        <div class="flex flex-col">
+                            <p class="text-lg">Bike</p>
+                            <small>{{fareDetails.uberBike.eta}} Min</small>
+                        </div>                          </div>
+                    <p class="text-2xl">₹{{fareDetails.uberBike.cost}}</p>
+                </div>
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-motorcycle fa-xl"></i>
+                        <div class="flex flex-col">
+                            <p class="text-lg">Auto</p>
+                            <small>{{fareDetails.uberAuto.eta}} Min</small>
+                        </div>                          </div>
+                    <p class="text-2xl">₹{{fareDetails.uberAuto.cost}}</p>
+                </div>
+                <div class="flex w-full justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-taxi fa-xl"></i>
+                        <div class="flex flex-col">
+                            <p class="text-lg">Cab</p>
+                            <small>{{fareDetails.uberCab.eta}} Min</small>
+                        </div>                          </div>
+                    <p class="text-2xl">₹{{fareDetails.uberCab.cost}}</p>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+<ng-template #noFareDetails>
+    <div>
+        <p>Invalid State.</p>
+    </div>
+</ng-template>

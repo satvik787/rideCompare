@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
@@ -8,5 +8,5 @@ import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/rou
   standalone: true
 })
 export class SidebarComponent {
-
+  @Input() drawerToggleFunction: Function = () => {};
 }

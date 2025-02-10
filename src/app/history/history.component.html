@@ -1,4 +1,6 @@
-<div class="h-full bg-sky-900 flex flex-col gap-2 p-4 overflow-y-auto">
-    <div class="h-10"></div>
-    <app-history-card *ngFor="let history of histories" [fareHistory]="history"></app-history-card>
+<div class="h-full bg-sky-900  gap-2 p-4 overflow-y-auto">
+    <div class="h-12"></div>
+    <div class="flex flex-col gap-2">
+        <app-history-card *ngFor="let history of histories" [fareHistory]="history"></app-history-card>
+    </div>
 </div>
