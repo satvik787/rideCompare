@@ -4,10 +4,12 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
 import { FareDetailsComponent } from './fare-details/fare-details.component';
+import { loginRequiredGuard } from './login-required.guard';
 export const routes: Routes = [
     {
         path: '',
-        component: FareComponent
+        component: FareComponent,
+        canActivate: [loginRequiredGuard]
     },
     {
         path:'register',
