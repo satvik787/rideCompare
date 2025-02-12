@@ -1,77 +1,91 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment.development";
+import { Router } from "@angular/router";
 @Injectable(
     {providedIn: 'root'}
 )
 export class AuthService {
 
-    private _isLoggedIn: boolean = false;
+    router = inject(Router);
+    private _isLoggedIn: boolean | undefined;
 
-    get isLoggedIn(): boolean { return this._isLoggedIn; }
+    get isLoggedIn(): boolean | undefined{ return this._isLoggedIn; }
 
-    private user: any;
+    private _user: any;
+
+    get user(): any { return this._user; }
 
     constructor(private http: HttpClient) { 
-        console.log("AuthService constructor");
-        
-        http.get(environment.apiUri+"/me", {withCredentials:true})
-        .subscribe({
-            next:(data: any) => {
-                console.log(data);            
-            },
-            error:(error: any) => {
-                console.log(error);
-                this._isLoggedIn = false;
-            }
-        });   
+        const token = localStorage.getItem("token");
+        if (token) {
+            http.get(environment.apiUri + "/me", { headers: { "Authorization": token } })
+            .subscribe({
+                next: (data: any) => {
+                    if(data.success){
+                        this._isLoggedIn = true;
+                        this._user = data.data;
+                    }else{
+                        this._isLoggedIn = false;
+                    }
+                },
+                error: (error: any) => {
+                    this._isLoggedIn = false;
+                }
+            });
+        } else {
+            this._isLoggedIn = false;
+        } 
     }
 
     login(phone: string, password: string): Promise<{isLoggedIn: boolean, error?: string}> {
-        return new Promise<{isLoggedIn:boolean,error:string}>((resolve, reject) => {
-            this.http.post(environment.apiUri + "/login", { phone, password })
+        return new Promise<{isLoggedIn:boolean,error:string}>((resolve) => {
+            this.http.post(environment.apiUri + "/login", { phone, password },{observe:'response'})
             .subscribe({
                 next: (response: any) => {
-                    if(response.success && response.data) {
+                    if(response.status == 200) {
+                        localStorage.setItem("token",response.headers.get("Authorization"));                  
                         this._isLoggedIn = true;
-                        this.user = response.data;                            
+                        this._user = response.body.data;                            
                         resolve({isLoggedIn:true,error:""});
                     }
                     else {
                         this._isLoggedIn = false;
                         console.log(response);
-                        resolve({isLoggedIn:false,error:response.error?.map((e: any) => e.message).join(",")});
+                        resolve({isLoggedIn:false,error:response.error?.join(",")});
                     }
                 },
-                error: (error: any) => {
+                error: ({error}) => {
                     this._isLoggedIn = false;
-                    resolve({isLoggedIn:false,error:"Failed to login try again"});
+                    resolve({isLoggedIn:false,error:error?.errors?.join(",")});
                 }
             });
         });
 
     }
 
-    register(firstName:string,lastName:string,phone: string, password: string): Promise<Boolean> {
-        return new Promise<Boolean>((resolve, reject) => {
-            this.http.post(environment.apiUri + "/register", { firstName,lastName, phone, password })
+    register(firstName:string,lastName:string,phone: string, password: string): Promise<{isLoggedIn: boolean, error?: string}> {
+        return new Promise<{isLoggedIn: boolean, error?: string}>((resolve) => {
+            this.http.post(environment.apiUri + "/register", { firstName, lastName, phone, password },{observe:'response'})
             .subscribe({
-                next: (response: any) => {
-                    if(response.status == 200 && response.data) {
-                        this._isLoggedIn = true;
-                        this.user = response.data;                            
-                        resolve(true);
-                    }
-                    else {
-                        this._isLoggedIn = false;
-                        resolve(false);
-                    }
-                },
-                error: (error: any) => {
-                    this._isLoggedIn = false;
-                    resolve(false);
+            next: (response: any) => {
+                if(response.status == 200) {
+                    this._isLoggedIn = true;
+                    localStorage.setItem("token",response.headers.get("Authorization"));
+                    this._user = response.body.data;                            
+                    resolve({isLoggedIn:true,error:""});
                 }
+                else {
+                    this._isLoggedIn = false;
+                    resolve({isLoggedIn:false,error:response.error?.join(",")});
+                }
+            },
+            error: ({error}) => {
+                
+                this._isLoggedIn = false;
+                resolve({isLoggedIn:false,error:error?.errors?.join(",")});
+            }
             });
         });
     }

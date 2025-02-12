@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
 import { FareDetailsComponent } from './fare-details/fare-details.component';
 import { loginRequiredGuard } from './login-required.guard';
+import { loggedInGuard } from './logged-in.guard';
 export const routes: Routes = [
     {
         path: '',
@@ -13,18 +14,22 @@ export const routes: Routes = [
     },
     {
         path:'register',
-        component: SignupComponent
+        component: SignupComponent,
+        canActivate: [loggedInGuard]
     },
     {
         path:'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [loggedInGuard]
     },
     {
         path:'history',
-        component: HistoryComponent
+        component: HistoryComponent,
+        canActivate: [loginRequiredGuard]
     },
     {
         path: 'fare-details',
-        component: FareDetailsComponent
+        component: FareDetailsComponent,
+        canActivate: [loginRequiredGuard]
     }
 ];

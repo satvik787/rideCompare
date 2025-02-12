@@ -1,12 +1,18 @@
-<mat-drawer-container>
-  <mat-drawer mode="side" opened="false" #drawer mode="over" class="bg-sky-900" id="drawer">
+<mat-drawer-container >
+  <mat-drawer opened="false" #drawer mode="over" class="bg-sky-900" id="drawer">
     <app-sidebar [drawerToggleFunction]="drawer.toggle.bind(drawer)">
     </app-sidebar>
   </mat-drawer>
   <div class="w-full md:w-2/5 h-dvh">
-    <button (click)="drawer.toggle()" class="z-10 bg-white shadow inline absolute p-2 cursor-pointer top-3 left-3 rounded-full w-10 h-10" >
+    <button *ngIf="authService.isLoggedIn" (click)="drawer.toggle()" class="z-10 bg-white shadow inline absolute p-2 cursor-pointer top-3 left-3 rounded-full w-10 h-10" >
       <i class="fas fa-bars"></i>
     </button>
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="authService.isLoggedIn !== undefined" else loading></router-outlet>
   </div>  
 </mat-drawer-container>
+
+<ng-template #loading>
+  <div class="w-full md:w-2/5 h-dvh flex items-center justify-center bg-sky-900">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</ng-template>

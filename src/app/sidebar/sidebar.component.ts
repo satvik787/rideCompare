@@ -1,5 +1,6 @@
-import { Component,Input } from '@angular/core';
+import { Component,inject,Input } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { AuthService } from '../service/AuthService';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,4 +10,7 @@ import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/rou
 })
 export class SidebarComponent {
   @Input() drawerToggleFunction: Function = () => {};
+
+  authService = inject(AuthService);
+
 }
