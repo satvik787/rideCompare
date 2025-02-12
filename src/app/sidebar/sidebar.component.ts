@@ -13,4 +13,9 @@ export class SidebarComponent {
 
   authService = inject(AuthService);
 
+  handleLogout(){
+    this.authService.logout();
+    this.drawerToggleFunction();
+  }
+
 }

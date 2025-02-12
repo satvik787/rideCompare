@@ -14,7 +14,7 @@
             </div>
             <div>
                 <p>Distance: {{fareDetails.distance}}</p>
-                <p>Date: {{fareDetails.date}}</p>
+                <p>Date: {{fareDetails.date | date}}</p>
             </div>
         </div>
         <div class="bg-white shadow-md rounded p-2 w-full justify-between">
@@ -25,30 +25,30 @@
                         <i class="fa-solid fa-motorcycle fa-xl"></i>
                         <div class="flex flex-col">
                             <p class="text-lg">Bike</p>
-                            <small>{{fareDetails.olaBike.eta}} Min</small>
+                            <small>{{fareDetails.olaBike.eta | timeFormat}} </small>
                         </div>
                     </div>
-                    <p class="text-2xl">₹{{fareDetails.olaBike.cost}}</p>
+                    <p class="text-xl">₹{{fareDetails.olaBike.totalFare}}</p>
                 </div>
                 <div class="flex w-full justify-between items-center">
                     <div class="flex gap-2 items-center">
                         <i class="fa-solid fa-motorcycle fa-xl"></i>
                         <div class="flex flex-col">
                             <p class="text-lg">Auto</p>
-                            <small>{{fareDetails.olaBike.eta}} Min</small>
+                            <small>{{fareDetails.olaBike.eta | timeFormat}} </small>
                         </div>
                     </div>
-                    <p class="text-2xl">₹{{fareDetails.olaAuto.cost}}</p>
+                    <p class="text-xl">₹{{fareDetails.olaAuto.totalFare}}</p>
                 </div>
                 <div class="flex w-full justify-between items-center">
                     <div class="flex gap-2 items-center">
                         <i class="fa-solid fa-taxi fa-xl"></i>
                         <div class="flex flex-col">
                             <p class="text-lg">Cab</p>
-                            <small>{{fareDetails.olaBike.eta}} Min</small>
+                            <small>{{fareDetails.olaBike.eta | timeFormat}} </small>
                         </div>                    
                     </div>
-                    <p class="text-2xl">₹{{fareDetails.olaCab.cost}}</p>
+                    <p class="text-xl">₹{{fareDetails.olaCab.totalFare}}</p>
                 </div>
             </div>
         </div>
@@ -60,27 +60,27 @@
                         <i class="fa-solid fa-motorcycle fa-xl"></i>
                         <div class="flex flex-col">
                             <p class="text-lg">Bike</p>
-                            <small>{{fareDetails.uberBike.eta}} Min</small>
+                            <small>{{fareDetails.uberBike.eta | timeFormat}} </small>
                         </div>                          </div>
-                    <p class="text-2xl">₹{{fareDetails.uberBike.cost}}</p>
+                    <p class="text-xl">₹{{fareDetails.uberBike.totalFare}}</p>
                 </div>
                 <div class="flex w-full justify-between items-center">
                     <div class="flex gap-2 items-center">
                         <i class="fa-solid fa-motorcycle fa-xl"></i>
                         <div class="flex flex-col">
                             <p class="text-lg">Auto</p>
-                            <small>{{fareDetails.uberAuto.eta}} Min</small>
+                            <small>{{fareDetails.uberAuto.eta | timeFormat}} </small>
                         </div>                          </div>
-                    <p class="text-2xl">₹{{fareDetails.uberAuto.cost}}</p>
+                    <p class="text-xl">₹{{fareDetails.uberAuto.totalFare}}</p>
                 </div>
                 <div class="flex w-full justify-between items-center">
                     <div class="flex gap-2 items-center">
                         <i class="fa-solid fa-taxi fa-xl"></i>
                         <div class="flex flex-col">
                             <p class="text-lg">Cab</p>
-                            <small>{{fareDetails.uberCab.eta}} Min</small>
+                            <small>{{fareDetails.uberCab.eta | timeFormat }} </small>
                         </div>                          </div>
-                    <p class="text-2xl">₹{{fareDetails.uberCab.cost}}</p>
+                    <p class="text-xl">₹{{fareDetails.uberCab.totalFare}}</p>
                 </div>
             </div>
         </div>    

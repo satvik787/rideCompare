@@ -4,8 +4,9 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
 import { FareDetailsComponent } from './fare-details/fare-details.component';
-import { loginRequiredGuard } from './login-required.guard';
-import { loggedInGuard } from './logged-in.guard';
+import { loginRequiredGuard } from './routeGuard/login-required.guard';
+import { loggedInGuard } from './routeGuard/logged-in.guard';
+import { historyResolver } from './resolver/history-resolver.resolver';
 export const routes: Routes = [
     {
         path: '',
@@ -25,7 +26,7 @@ export const routes: Routes = [
     {
         path:'history',
         component: HistoryComponent,
-        canActivate: [loginRequiredGuard]
+        canActivate: [loginRequiredGuard],
     },
     {
         path: 'fare-details',

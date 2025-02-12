@@ -9,34 +9,41 @@ import { Router } from "@angular/router";
 export class AuthService {
 
     router = inject(Router);
-    private _isLoggedIn: boolean | undefined;
+    private _isLoggedIn: boolean = false;
 
-    get isLoggedIn(): boolean | undefined{ return this._isLoggedIn; }
+    get isLoggedIn(): boolean { return this._isLoggedIn; }
 
     private _user: any;
 
     get user(): any { return this._user; }
 
+    public resolved:Promise<boolean>;
+
     constructor(private http: HttpClient) { 
         const token = localStorage.getItem("token");
-        if (token) {
-            http.get(environment.apiUri + "/me", { headers: { "Authorization": token } })
-            .subscribe({
-                next: (data: any) => {
-                    if(data.success){
-                        this._isLoggedIn = true;
-                        this._user = data.data;
-                    }else{
+        this.resolved = new Promise((resolve) => {
+            if (token) {
+                http.get(environment.apiUri + "/me", { headers: { "Authorization": token } })
+                .subscribe({
+                    next: (data: any) => {
+                        if(data.success){
+                            this._isLoggedIn = true;
+                            this._user = data.data;
+                        }else{
+                            this._isLoggedIn = false;
+                        }
+                        resolve(true);
+                    },
+                    error: (error: any) => {
                         this._isLoggedIn = false;
+                        resolve(true);
                     }
-                },
-                error: (error: any) => {
-                    this._isLoggedIn = false;
-                }
-            });
-        } else {
-            this._isLoggedIn = false;
-        } 
+                });
+            } else {
+                this._isLoggedIn = false;
+                resolve(true);
+            } 
+        });
     }
 
     login(phone: string, password: string): Promise<{isLoggedIn: boolean, error?: string}> {
@@ -89,4 +96,12 @@ export class AuthService {
             });
         });
     }
+
+    logout(){
+        localStorage.removeItem("token");
+        this._isLoggedIn = false;
+        this._user = null;
+        this.router.navigate(["/login"]);
+    }
+
 }

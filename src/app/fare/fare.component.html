@@ -23,16 +23,16 @@
                 <app-mapple-search placeholder="Dropoff Location"></app-mapple-search>
             </div>
         </div>
-        <div class="h-[70%] overflow-y-auto flex flex-col px-4 py-2 gap-3">
+        <div class="h-[70%] overflow-y-auto flex flex-col px-4 py-2 gap-3" *ngIf="fareDetails !== null && quickRide && EconomyRide">
             <div class="flex gap-4 items-center">
                 <div class="p-2 bg-sky-900 shadow-md rounded-xl h-10 w-10  flex justify-center items-center  border-sky-950  ">
                     <i class="fa-solid fa-bolt text-white fa-lg"></i>
                 </div>    
                 <div>
                     <p class="text-white text-md">Quickest Ride</p>
-                    <p class="text-white ">Ola Bike</p>
+                    <p class="text-white ">{{quickRide.type}}</p>
                 </div>
-                <p class="text-white text-md ml-auto">28 Min</p>
+                <p class="text-white text-md ml-auto">{{quickRide.eta | timeFormat}}</p>
             </div>
             <div class="flex gap-4 items-center">
                 <div class="p-2 bg-sky-900 shadow-md rounded-xl h-10 w-10  flex justify-center items-center  border-sky-950  ">
@@ -40,13 +40,13 @@
                 </div>    
                 <div>
                     <p class="text-white text-md">Econimical Ride</p>
-                    <p class="text-white ">Ola Bike</p>
+                    <p class="text-white ">{{EconomyRide.type}}</p>
                 </div>
                 <p class="text-white text-md ml-auto">
-                    <i class="fa-solid fa-indian-rupee-sign"></i> 2800
+                    <i class="fa-solid fa-indian-rupee-sign"></i> {{quickRide.totalFare}}
                 </p>
             </div>
-            <div class="flex gap-4 items-center cursor-pointer">
+            <div class="flex gap-4 items-center cursor-pointer" (click)="handleCompareAll()">
                 <div class="p-2 bg-sky-900 shadow-md rounded-xl h-10 w-10  flex justify-center items-center  border-sky-950  ">
                     <i class="fa-solid fa-list text-white fa-lg"></i>
                 </div>    
