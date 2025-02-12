@@ -14,6 +14,7 @@ export class FetchService{
     getUserHistory():Observable<FareDetails[]>{
         const token:string | null = localStorage.getItem("token");
         if(token){
+            
             return this.httpClient.get<FareDetails[]>(environment.apiUri+"/history",{headers:{"Authorization":token}});
         }
         return of([]);

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class HistoryCardComponent {
   @Input() fareHistory: FareDetails | undefined;
   @HostBinding('style.height') height = 'fit-content';
+  @HostBinding('style.width') width = '100%';
   
   constructor(private router: Router) { }
 

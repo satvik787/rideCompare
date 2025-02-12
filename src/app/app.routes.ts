@@ -27,6 +27,7 @@ export const routes: Routes = [
         path:'history',
         component: HistoryComponent,
         canActivate: [loginRequiredGuard],
+        resolve: { histories: historyResolver }
     },
     {
         path: 'fare-details',
