@@ -6,11 +6,11 @@
         </div>
         <div class="flex items-center gap-2">
             <span class="text-sm"><i class="fas fa-circle text-red-500 fa-xs"></i></span>
-            <p>{{ fareHistory?.destination }}</p>
+            <p>{{ fareHistory?.destination | slice:0:20 }}...</p>
         </div>
     </div>
     <div>
-        <p>Distance: {{fareHistory?.distance!}}</p>
+        <p>Distance: {{fareHistory?.distance | number:'1.0-0' }}</p>
         <p>Date: {{fareHistory?.date}}</p>
     </div>
 </div>

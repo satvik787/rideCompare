@@ -47,13 +47,13 @@ export class FareComponent implements AfterViewInit{
           if(this.quickRide == null || this.quickRide.eta > j.eta){
             this.quickRide = {...j};
             if(this.quickRide !== null){
-              this.quickRide.type = `${i.provider} ${j.type}`;
+              this.quickRide.vehicleType =  `${i.provider} ${j.vehicleType}`;
             }
           }
           if(this.EconomyRide == null || this.EconomyRide.totalFare > j.totalFare){
             this.EconomyRide = {...j};
             if(this.EconomyRide !== null){
-              this.EconomyRide.type = `${i.provider} ${j.type}`;
+              this.EconomyRide.vehicleType = `${i.provider} ${j.vehicleType}`;
             }
           }
         }

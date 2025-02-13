@@ -14,5 +14,4 @@ export class FareDetailsComponent  implements OnInit {
   ngOnInit() {
     this.fareDetails = history.state;
   }
-
 }
